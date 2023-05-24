@@ -4,19 +4,24 @@
 
 
 <div class="ml-3">
-
+    <h4>
+        Todo list
+        <a href="{% url 'tasks:task-create' %}" class="btn btn-primary link-to-page">
+            Add task
+        </a>
+    </h4>
 
     {% for task in task_list %}
     <hr>
     <p>
-
         <strong>{{ task.description }}</strong>
         {% if task.is_completed %}
         <strong class="text-success">Done</strong>
         <a class="btn btn-secondary link-to-page">Undo</a>
         {% else %}
         <strong class="text-danger">Not done</strong>
-
+        <a href="{% url 'tasks:task-close' pk=task.id %}" class="btn btn-success link-to-page "><i
+                class="text-right">Complete</i></a>
         {% endif %}
     </p>
 
@@ -26,7 +31,8 @@
         {% for tag in task.tags.all %}
         {{ tag }}
         {% endfor %}
-
+        <a href="{% url 'tasks:task-update' pk=task.id %}" class="link-to-page">Update</a>
+        <a href="{% url 'tasks:task-delete' pk=task.id %}" class="link-to-page text-danger">Delete</a>
     </p>
     {% empty %}
     <p>No task!</p>
