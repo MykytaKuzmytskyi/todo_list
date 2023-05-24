@@ -9,3 +9,9 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ("description", "tags", "deadline")
+
+
+class TagForm(forms.ModelForm):
+    class Meta:
+        model = Tag
+        fields = ("name",)
