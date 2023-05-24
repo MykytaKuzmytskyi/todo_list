@@ -6,4 +6,4 @@ from tasks.models import Task
 
 class TaskListView(generic.ListView):
     model = Task
-    template_name = "todo_list/task_list.html"
+    template_name = "tasks/task_list.html"
