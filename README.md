@@ -1,5 +1,5 @@
 # Todo-list
-
+### A page for keeping a list of tasks, adding relevant tags with an existing binding to the date.
 ## Running the program locally
 
 1. Clone the source code:
