@@ -29,7 +29,7 @@
     <p>Deadline: {{ task.deadline }}</p>
     <p>Tags:
         {% for tag in task.tags.all %}
-        {{ tag }}
+        <q class="font-italic">{{ tag }}</q>
         {% endfor %}
         <a href="{% url 'tasks:task-update' pk=task.id %}" class="link-to-page">Update</a>
         <a href="{% url 'tasks:task-delete' pk=task.id %}" class="link-to-page text-danger">Delete</a>
