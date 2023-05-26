@@ -35,11 +35,6 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
-6. Use the following command to load prepared data from fixture:
-
-```bash
-python manage.py loaddata todo_list_db_data.json
-```
 
 - You can use following superuser (or create another one by yourself using the admin page):
     - Login: `admin.user`
