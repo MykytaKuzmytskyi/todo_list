@@ -35,7 +35,7 @@
     </p>
 
     <p>Created: {{ task.creation_date }}</p>
-    <p>Deadline: {{ task.deadline }}</p>
+    {% if task.deadline %}<p>Deadline: {{ task.deadline }}</p>{% endif %}
     <p>Tags:
         {% for tag in task.tags.all %}
         <q class="font-italic">{{ tag }}</q>

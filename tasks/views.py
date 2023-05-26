@@ -5,6 +5,9 @@ from django.views import generic, View
 from tasks.forms import TaskForm, TagForm
 from tasks.models import Task, Tag
 
+TASK_LIST_URL = reverse_lazy("tasks:task-list")
+TAG_LIST_URL = reverse_lazy("tasks:tag-list")
+
 
 class TaskListView(generic.ListView):
     model = Task
@@ -14,18 +17,18 @@ class TaskListView(generic.ListView):
 class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy("tasks:task-list")
+    success_url = TASK_LIST_URL
 
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
     form_class = TaskForm
-    success_url = reverse_lazy("tasks:task-list")
+    success_url = TASK_LIST_URL
 
 
 class TaskDeleteView(generic.DeleteView):
     model = Task
-    success_url = reverse_lazy("tasks:task-list")
+    success_url = TASK_LIST_URL
 
 
 class CloseOpenTask(View):
@@ -37,9 +40,7 @@ class CloseOpenTask(View):
         else:
             task.is_completed = False
             task.save()
-        return HttpResponseRedirect(
-            reverse_lazy("tasks:task-list")
-        )
+        return HttpResponseRedirect(TASK_LIST_URL)
 
 
 class TagListView(generic.ListView):
@@ -50,15 +51,15 @@ class TagListView(generic.ListView):
 class TagCreateView(generic.CreateView):
     model = Tag
     form_class = TagForm
-    success_url = reverse_lazy("tasks:tag-list")
+    success_url = TAG_LIST_URL
 
 
 class TagUpdateView(generic.UpdateView):
     model = Tag
     form_class = TagForm
-    success_url = reverse_lazy("tasks:tag-list")
+    success_url = TAG_LIST_URL
 
 
 class TagDeleteView(generic.DeleteView):
     model = Tag
-    success_url = reverse_lazy("tasks:tag-list")
+    success_url = TAG_LIST_URL

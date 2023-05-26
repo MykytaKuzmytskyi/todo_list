@@ -7,7 +7,9 @@ from tasks.models import Task, Tag
 
 
 class TaskForm(forms.ModelForm):
-    deadline = forms.DateField(widget=forms.SelectDateWidget)
+    deadline = forms.DateField(widget=forms.SelectDateWidget, required=False)
+    # deadline = forms.DateField(widget=forms.DateInput(
+    #         attrs={'placeholder': '__/__/____', 'class': 'date',}), required=False)
 
     class Meta:
         model = Task
@@ -15,7 +17,7 @@ class TaskForm(forms.ModelForm):
 
     def clean_deadline(self):
         deadline = self.cleaned_data["deadline"]
-        if deadline < datetime.date.today():
+        if deadline is not None and deadline < datetime.date.today():
             raise ValidationError(
                 "The date cannot be in the past!"
             )
