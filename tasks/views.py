@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.views import generic
+from django.views import generic, View
 
 from tasks.forms import TaskForm, TagForm
 from tasks.models import Task, Tag
@@ -28,14 +28,18 @@ class TaskDeleteView(generic.DeleteView):
     success_url = reverse_lazy("tasks:task-list")
 
 
-def closing_task(request, pk):
-    task = Task.objects.get(id=pk)
-    if task.is_completed is False:
-        task.is_completed = True
-        task.save()
-    return HttpResponseRedirect(
-        reverse_lazy("tasks:task-list")
-    )
+class CloseOpenTask(View):
+    def post(self, request, **kwargs):
+        task = Task.objects.get(id=kwargs["pk"])
+        if task.is_completed is False:
+            task.is_completed = True
+            task.save()
+        else:
+            task.is_completed = False
+            task.save()
+        return HttpResponseRedirect(
+            reverse_lazy("tasks:task-list")
+        )
 
 
 class TagListView(generic.ListView):

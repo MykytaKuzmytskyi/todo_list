@@ -5,19 +5,30 @@ from .views import (
     TaskCreateView,
     TaskUpdateView,
     TaskDeleteView,
-    closing_task,
     TagListView,
     TagCreateView,
     TagUpdateView,
-    TagDeleteView,
+    TagDeleteView, CloseOpenTask,
 )
 
 urlpatterns = [
     path("", TaskListView.as_view(), name="task-list"),
     path("tasks/create/", TaskCreateView.as_view(), name="task-create"),
-    path("tasks/update/<int:pk>/", TaskUpdateView.as_view(), name="task-update"),
-    path("tasks/delete/<int:pk>/", TaskDeleteView.as_view(), name="task-delete"),
-    path("tasks/<int:pk>/close/", closing_task, name="task-close"),
+    path(
+        "tasks/update/<int:pk>/",
+        TaskUpdateView.as_view(),
+        name="task-update"
+    ),
+    path(
+        "tasks/delete/<int:pk>/",
+        TaskDeleteView.as_view(),
+        name="task-delete"
+    ),
+    path(
+        "tasks/<int:pk>/close_open/",
+        CloseOpenTask.as_view(),
+        name="task-close-open"
+    ),
 
     path("tags/", TagListView.as_view(), name="tag-list"),
     path("tags/create/", TagCreateView.as_view(), name="tag-create"),
