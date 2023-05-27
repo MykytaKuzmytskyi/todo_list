@@ -8,8 +8,6 @@ from tasks.models import Task, Tag
 
 class TaskForm(forms.ModelForm):
     deadline = forms.DateField(widget=forms.SelectDateWidget, required=False)
-    # deadline = forms.DateField(widget=forms.DateInput(
-    #         attrs={'placeholder': '__/__/____', 'class': 'date',}), required=False)
 
     class Meta:
         model = Task
